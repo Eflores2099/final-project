@@ -1,9 +1,10 @@
 const express = require('express')
-// const User = require('..models/user.js')
+const User = require('../models/user.js')
 const authRouter= express.Router()
 const jwt = require('jsonwebtoken')
 
 authRouter.post("/signup", (req, res, next)=> {
+    console.log(req.body)
     User.findOne({username: req.body.username.toLowerCase()}, (err, user) => {
         if(err) {
             res.status(500)
@@ -41,7 +42,7 @@ authRouter.post("/login", (req, res, next) => {
                 return next(err)
             }
             const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
-            return res.status(200).send({user: userwithoutPassword(), token})
+            return res.status(200).send({user: user.withoutPassword(), token})
         })
     })
 })

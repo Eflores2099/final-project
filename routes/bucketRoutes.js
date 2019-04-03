@@ -24,7 +24,7 @@ bucketRouter.post("/", (req, res, next) => {
     })
 })
 
-bucketListRouter.get("/: bucketListId", (req, res, next) => {
+bucketListRouter.get("/:bucketListId", (req, res, next) => {
     bucketList.findOne({_id: req.params.bucketListId, user: req.user._id}, (err, bucketList) => {
        if (err) {
            res.status(500)
@@ -38,7 +38,7 @@ bucketListRouter.get("/: bucketListId", (req, res, next) => {
     })
 })
 
-bucketListRouter.put("/: bucketListId", (req, res, next) => {
+bucketListRouter.put("/:bucketListId", (req, res, next) => {
     bucketList.findOneAndUpdate(
        {_id:req.params.bucketListId, user: req.user._id},
         req.body,
@@ -53,7 +53,7 @@ bucketListRouter.put("/: bucketListId", (req, res, next) => {
     )
 })
 
-bucketList.delete("/: bucketListId", (req, res, next) => {
+bucketList.delete("/:bucketListId", (req, res, next) => {
     bucketList.findOneAndRemove({_id: req.params.bucketListid, user: req.user._id}, (err, bucketList) => {
         if (err) {
             res.status(500)

@@ -1,18 +1,18 @@
 const express = require("express")
 const userRouter = express.Router()
-const User = require()
+const User = require("../models/user")
 
-userRouter.put("/userinfo", (req, res, next) => {
+userRouter.put("/profile", (req, res, next) => {
     User.findOneAndUpdate(
-        { _id: req.user._id },
-        req.body,
-        { new: true },
-        (err, updatedUser) => {
+       {_id: req.user._id},
+       req.body,
+        {new: true},
+        (err, User) => {
             if (err) {
                 res.status(500)
                 return next(err)
             }
-            return res.status(200).send(updatedUser)
+            return res.send(User)
         }
     )
 })

@@ -13,8 +13,18 @@
   "dependencies": {
     "bcrypt": "^3.0.5",
     "dotenv": "^7.0.0",
+    "express": "^4.16.4",
     "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.21",
     "morgan": "^1.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eflores2099/final-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Eflores2099/final-project/issues"
+  },
+  "homepage": "https://github.com/Eflores2099/final-project#readme"
 }

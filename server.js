@@ -12,15 +12,15 @@ app.use(morgan('dev'))
 app.use("/api", expressJwt({secret: process.env.SECRET}))
 
 // My database Connect to mongoose
-mongoose.connect('mongodb://localhost:27017/auth-lessons', {useNewUrlParser: true}, () => {
+mongoose.connect('mongodb://localhost:27017/auth', {useNewUrlParser: true}, () => {
     console.log("[o] Connected to the Database")
 })
 
 
 // My routes
-app.use('/auth', require('./routes/authRoutes.js'))
-// app.use('/api/user', require("./routes/userRoutes.js"))
-// app.use('/api/post', require("./routes/postRoutes.js"))
+app.use('/auth', require('./routes/authRoutes'))
+app.use('/api/user', require("./routes/userRoutes.js"))
+// app.use('/api/post', require("./routes/bucketRoutes.js"))
 
 
 // Global Server Error Handler
