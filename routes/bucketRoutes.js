@@ -1,6 +1,6 @@
 const express = require("express")
 const bucketRouter = express.Router()
-const bucketList = require()
+const bucketList = require('../models/bucketList')
 
 bucketRouter.get("/", (req, res, next) => {
     bucketList.find({user: req.user._id}, (err, bucketList) => {
@@ -13,34 +13,21 @@ bucketRouter.get("/", (req, res, next) => {
 })
 
 bucketRouter.post("/", (req, res, next) => {
-    const buckletList = new bucketList(req.body)
-    bucketList.user = req.user._id 
-    bucketList.save(function (err, newBucketList) {
+    const newBucket = new bucketList(req.body)
+    newBucket.user = req.user._id 
+    newBucket.save(function (err, newBucketList) {
         if (err) {
             res.status(500)
             return next(err)
         }
-        return res.send(bucketList)
+        return res.send(newBucketList)
     })
 })
 
-bucketListRouter.get("/:bucketListId", (req, res, next) => {
-    bucketList.findOne({_id: req.params.bucketListId, user: req.user._id}, (err, bucketList) => {
-       if (err) {
-           res.status(500)
-           return next(err)
-       } 
-       if (!bucketList) {
-           res.status(404)
-           return next(new Error("List item not found"))
-       }
-       return res.send(bucketList)
-    })
-})
 
-bucketListRouter.put("/:bucketListId", (req, res, next) => {
+bucketRouter.put("/:bucket_list_id", (req, res, next) => {
     bucketList.findOneAndUpdate(
-       {_id:req.params.bucketListId, user: req.user._id},
+       {_id:req.params.bucket_list_id},
         req.body,
         {new: true},
         (err, bucketList) => {
@@ -53,8 +40,10 @@ bucketListRouter.put("/:bucketListId", (req, res, next) => {
     )
 })
 
-bucketList.delete("/:bucketListId", (req, res, next) => {
-    bucketList.findOneAndRemove({_id: req.params.bucketListid, user: req.user._id}, (err, bucketList) => {
+bucketRouter.delete("/:bucket_list_id", (req, res, next) => {
+    bucketList.findOneAndRemove({_id: req.params.bucket_list_id, 
+        user: req.user._id}, 
+        (err, bucketList) => {
         if (err) {
             res.status(500)
             return next(err)
@@ -63,4 +52,4 @@ bucketList.delete("/:bucketListId", (req, res, next) => {
     })
 })
 
-module.exports = bucketListRouter
+module.exports = bucketRouter

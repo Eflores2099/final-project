@@ -16,10 +16,27 @@ const userSchema = new Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    profile: {
+        firstName: String,
+        lastName: String,
+        gender: String,
+        birthday: String,
+        placeOfBirth: String,
+        nationality: String,
+        country: String,
+        city: String,
+        state: String,
+        phoneNumber: String,
+        maritalStatus:String,
+        partner: String,
+        numOfChildren: Number,
+        mother: String,
+        father: String
     }
 })
 
-userSchema.pre("save", function(next){
+userSchema.pre("save", function(next) {
     const user = this
     if (!user.isModified("password")) return next()
     bcrypt.hash(user.password, 10, (err, hash) => {
