@@ -2,7 +2,7 @@ const express = require("express")
 const trusteeRouter = express.Router()
 const trustee = require("../models/trustee")
 
-trusteeRouter.get("/", (req, res, next) =>{
+trusteeRouter.get("/", (req, res, next) => {
     trustee.find({user:req.user._id}, (err, trustee) => {
         if (err){
             res.status(500)
@@ -20,11 +20,11 @@ trusteeRouter.post("/", (req,res, next) => {
             res.status(500)
             return next(err)
         }
-        return next(newTrustee)
+        return res.status(201).send(newTrustee)
     })
 })
 
-bucketRouter.put("/:trustee_id", (req, res, next) => {
+trusteeRouter.put("/:trustee_id", (req, res, next) => {
     trustee.findOneAndUpdate(
         {_id:req.params.trustee_id},
         req.body,

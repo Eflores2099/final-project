@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 
 const UserContext = React.createContext()
 
 class UserProvider extends Component {
-    contructor(){
+    constructor(){
         super()
         this.state = {
             user:JSON.parse(localStorage.getItem('user')) || {},
@@ -47,9 +48,9 @@ class UserProvider extends Component {
     }
 }
 
-export default UserProvider
+export default withRouter(UserProvider)
 
 export const withUser = C => props =>(
-<UserContext.Consumer>
-    {value => <C {...props} {...value}/>}
+    <UserContext.Consumer>
+        {value => <C {...props} {...value}/>}
     </UserContext.Consumer>)

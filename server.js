@@ -21,6 +21,7 @@ mongoose.connect('mongodb://localhost:27017/auth', {useNewUrlParser: true}, () =
 app.use('/auth', require('./routes/authRoutes'))
 app.use('/api/user', require("./routes/userRoutes.js"))
 app.use('/api/post', require("./routes/bucketRoutes.js"))
+app.use('/api/trustee', require("./routes/trusteeRoutes.js"))
 
 
 // Global Server Error Handler
@@ -29,8 +30,7 @@ app.use((err, req, res, next) => {
     if(err.name === "UnauthorizedError") {
         res.status(err.status)
     }
-    return
-    res.send({errMsg: err.message})
+    return res.send({errMsg: err.message})
 })
 
 // server set up
