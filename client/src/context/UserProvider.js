@@ -10,7 +10,9 @@ class UserProvider extends Component {
         super()
         this.state = {
             user:JSON.parse(localStorage.getItem('user')) || {},
-            token: localStorage.token || ""
+            token: localStorage.token || "",
+            errMsg:""
+
         }
     }
     signup = credentials => {
@@ -18,9 +20,9 @@ class UserProvider extends Component {
             const {user, token} = res.data
             localStorage.setItem("user", JSON.stringify(user))
             localStorage.setItem("token", token)
-            this.setState({ user, token})
+            this.setState({ user, token,errMsg: ""})
         })
-        .catch(err => console.log(err))
+        .catch(err => this.handleErr(err.response.data.errMsg))
     }
 
     login = credentials => {
@@ -29,9 +31,22 @@ class UserProvider extends Component {
             localStorage.setItem("user", JSON.stringify(user))
             localStorage.setItem("token", token)
             this.setState({ user, token})
+            this.setState({user,token, errMsg: ""})
 
     })
-    .catch(err => console.log(err))
+    .catch(err => this.handleErr(err.response.data.errMsg))
+    
+}
+
+
+logout = ( )=> {
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    this.setState({user: {}, token: "" })
+}
+
+handleErr = err => {
+    this.setState({errMsg: err})
 }
 
     render(){
@@ -40,7 +55,8 @@ class UserProvider extends Component {
                 value={{
                     ...this.state,
                     signup:this.signup,
-                    login: this.login
+                    login: this.login,
+                    logout:this.logout
                 }}>
                 {this.props.children}
                 </UserContext.Provider>
@@ -50,7 +66,7 @@ class UserProvider extends Component {
 
 export default withRouter(UserProvider)
 
-export const withUser = C => props =>(
+export const withUser = C => props =>( 
     <UserContext.Consumer>
         {value => <C {...props} {...value}/>}
     </UserContext.Consumer>)

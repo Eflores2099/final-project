@@ -8,7 +8,7 @@ import Home from './components/Home.js'
 
 
 const App = (props) => {
-    const{ user, token,} = props
+    const{ user, token, logout} = props
     return (
         <div>
             <Switch>
@@ -20,6 +20,8 @@ const App = (props) => {
                     path="/home"
                     redirectedTo="/login"
                     component={Home}
+                    username={user.username}
+                    logout={logout}
                     />
                 <Route 
                     path="/home" 

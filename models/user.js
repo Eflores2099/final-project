@@ -30,7 +30,7 @@ const userSchema = new Schema({
         phoneNumber: String,
         maritalStatus:String,
         partner: String,
-        numOfChildren: Number,
+        numOfChildren: String,
         mother: String,
         father: String
     }

@@ -42,7 +42,7 @@ class AuthContainer extends Component {
     }
 
     toggler = () => {
-        this.setState(prevState =>({
+        this.setState(prevState => ({
             authToggle:!prevState.authToggle
         }))
 
@@ -62,7 +62,7 @@ class AuthContainer extends Component {
                         password = {this.state.password}
                         btnText = "Sign Up"
                     />
-
+                    <p style= {{color: 'firebrick'}}>{this.props.errMsg}</p>
                     <p onClick={this.toggler}>Already a member?</p>
                 </>
                 :
@@ -75,6 +75,7 @@ class AuthContainer extends Component {
                         password={this.state.password}
                         btnText = "Login"
                     />
+                    <p style={{color: 'firebrick'}}>{this.props.errMsg}</p>
                     <p onClick={this.toggler}>Not a member?</p>
                 </>
                 }
