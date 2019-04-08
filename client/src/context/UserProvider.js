@@ -36,18 +36,18 @@ class UserProvider extends Component {
     })
     .catch(err => this.handleErr(err.response.data.errMsg))
     
-}
+    }
 
 
-logout = ( )=> {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    this.setState({user: {}, token: "" })
-}
+    logout = ( )=> {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        this.setState({user: {}, token: "" })
+    }
 
-handleErr = err => {
-    this.setState({errMsg: err})
-}
+    handleErr = err => {
+        this.setState({errMsg: err})
+    }
 
     render(){
         return (

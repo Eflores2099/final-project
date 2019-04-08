@@ -27,11 +27,18 @@ class HomeProfile extends Component {
     }
 
 
+
     handleChange = (e) => {
+        console.log(e.target.name)
+        let name = e.target.name
+        let value = e.target.value
+        console.log(e.target.value)
+        console.log(name)
         this.setState(prevState => ({
-            profile:{
-                ...prevState.profile,
-                [e.target.name]: e.target.value
+            profile:
+                {
+                    ...prevState.profile,
+                [name]: value
             }
         }))
     }
@@ -40,21 +47,31 @@ class HomeProfile extends Component {
 
         e.preventDefault()
         this.props.profile(this.state.profile)
+    
 }
 
 
     render() {
         const mappedInputs = Object.entries(this.state.profile).map(([key, value]) => (
-            <input key={key} type="text" name={key} value={value} onChange= {this.handleChange} placeholder={key[0].toUpperCase() + key.slice(1)}/>
+            <input key = {key} 
+                type ="text" 
+                name = {key} 
+                value = {value} 
+                onChange = {this.handleChange} 
+                placeholder = {key[0].toUpperCase() + key.slice(1)}
+            />
         ))
 
         
         return (
-            <div className = "profile-form">
-                <form onSubmit={this.handleProfileSubmit}>
+            <div className = "profile">
+                <br/>
+                <br/>
+                <h4>about me</h4>
+                <form className= "profile-form" onSubmit = {this.handleProfileSubmit}>
                      {mappedInputs}
-
-                <button>Save</button>
+                        <br/>
+                <button onCLick={this.handleProfileSubmit}>Save</button>
                 </form>
             </div>
         )   

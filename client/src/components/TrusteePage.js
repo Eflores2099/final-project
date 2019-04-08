@@ -6,6 +6,7 @@ class TrusteePage extends Component {
         super() 
         this.state = {
             trustee: {
+
                 firstName: "",
                 lastName: "",
                 email: ""
@@ -14,10 +15,16 @@ class TrusteePage extends Component {
     }  
     
     handleChange = (e) => {
-        this.setState(preveState => ({
-            trustee:{
-                ...preveState.trustee,
-                [e.target.name]: e.target.value
+        console.log(e.target.name)
+        let name = e.target.name
+        let value= e.target.value 
+        console.log(e.target.value)
+        console.log(name)
+        this.setState(prevState => ({
+            trustee:
+                {
+                    ...prevState.trustee,
+                [name]: value
             }
         }))
     }
@@ -31,14 +38,26 @@ class TrusteePage extends Component {
     }
     
     render() {
-        const mappedInputs = Object.entries(this.state.trustee).map(([key, value]) => (
-            <input key = {key} type = "text" name = {key} value ={ value} onChange = {this.handleChange} placeholder = {key[0].toUpperCase() + key.slice(1)}/>
+        const mappedTrustees = Object.entries(this.state.trustee).map(([key, value]) => (
+            <input key = {key} 
+                type = "text" 
+                name = {key} 
+                value ={value} 
+                onChange = {this.handleChange} 
+                placeholder = {key[0].toUpperCase() + key.slice(1)}
+            />
         ))
 
         return (
             <div>
-                <form onSubmit={this.handleTrusteeSubmit}>
-                    {mappedInputs}
+                <br/>
+                <br/>
+                <h3>Name of Trustees</h3>
+                <form className ="trustee-input"onSubmit  = {this.handleTrusteeSubmit}>
+                    {mappedTrustees}
+                    <br/>
+
+                    <button onClick ={this.handleTrusteeSubmit}>Save</button>
                 </form>
 
             </div>
@@ -47,9 +66,4 @@ class TrusteePage extends Component {
 }    
 
 
-
-
-
-
-
-}
+export default TrusteePage

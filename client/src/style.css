@@ -1,0 +1,38 @@
+/* home-profile form */
+
+.nav{
+    width: 100vw;
+    height: 50px;
+    background-color: lightblue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family:  Arial;
+}
+
+body{
+    background-color: cornflowerblue;
+}
+.profile-form{
+    display: grid|inline-grid;
+    grid-column: span 3;
+    width: 190px;
+    float: left;
+    font-size: 1.5rem;
+    border: solid;
+
+}
+
+
+.trustee-input{
+    display: grid|inline-grid;
+    grid-column: 3;
+    font-size:1.5rem;
+    width: 200px;
+}
+
+@media screen and (max-width: 600px){
+    .column{
+        width:100%;
+    }
+}
