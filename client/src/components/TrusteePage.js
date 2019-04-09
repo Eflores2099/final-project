@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {withUser} from '../context/UserProvider'
 
 
 class TrusteePage extends Component {
@@ -67,4 +68,4 @@ class TrusteePage extends Component {
 }    
 
 
-export default TrusteePage
+export default withUser(TrusteePage)

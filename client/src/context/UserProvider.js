@@ -67,12 +67,18 @@ class UserProvider extends Component {
         
     }
 
-    // trustee = (trustee) => {
-    //     userAxios.post("api/user/trustee", {trustee:}).then(res => {
-    //         localStorage.setItem("user", JSON .stringify(res.data))
-    //         this.setState({res.data})
-    //     })
-    // }
+    getProfile = (profile) => {
+        userAxios.get("/api/user/profile", {profile:profile}).then(res => {
+            this.setState({user: res.data})
+        })
+    }
+
+    trustee = (trustee) => {
+        userAxios.post("api/trustee", {trustee: trustee}).then(res => {
+            localStorage.setItem("user", JSON .stringify(res.data))
+            this.setState({trustee:res.data})
+        })
+    }
 
     render(){
         return (
@@ -82,7 +88,8 @@ class UserProvider extends Component {
                     signup:this.signup,
                     login: this.login,
                     logout:this.logout,
-                    profile:this.profile
+                    profile:this.profile,
+                    trustee:this.trustee
                 }}>
                 {this.props.children}
                 </UserContext.Provider>
