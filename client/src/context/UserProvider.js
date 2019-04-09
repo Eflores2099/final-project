@@ -2,6 +2,15 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
+const userAxios = axios.create();
+
+userAxios.interceptors.request.use((config)=>{
+    const token=localStorage.getItem("token")
+    config.headers.Authorization= `Bearer ${token}`
+    return config;
+})
+
+
 
 const UserContext = React.createContext()
 
@@ -16,7 +25,7 @@ class UserProvider extends Component {
         }
     }
     signup = credentials => {
-        axios.post("/auth/signup", credentials).then(res => {
+        userAxios.post("/auth/signup", credentials).then(res => {
             const {user, token} = res.data
             localStorage.setItem("user", JSON.stringify(user))
             localStorage.setItem("token", token)
@@ -26,7 +35,7 @@ class UserProvider extends Component {
     }
 
     login = credentials => {
-        axios.post("/auth/login", credentials).then(res => {
+        userAxios.post("/auth/login", credentials).then(res => {
             const {user, token} = res.data
             localStorage.setItem("user", JSON.stringify(user))
             localStorage.setItem("token", token)
@@ -39,7 +48,7 @@ class UserProvider extends Component {
     }
 
 
-    logout = ( )=> {
+    logout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
         this.setState({user: {}, token: "" })
@@ -49,6 +58,22 @@ class UserProvider extends Component {
         this.setState({errMsg: err})
     }
 
+    profile = (profile) => {
+        userAxios.post("/api/user/profile", {profile: profile}).then(res => {
+            localStorage.setItem('user', JSON.stringify(res.data))
+            this.setState({user: res.data})
+            
+        })
+        
+    }
+
+    // trustee = (trustee) => {
+    //     userAxios.post("api/user/trustee", {trustee:}).then(res => {
+    //         localStorage.setItem("user", JSON .stringify(res.data))
+    //         this.setState({res.data})
+    //     })
+    // }
+
     render(){
         return (
             <UserContext.Provider
@@ -56,7 +81,8 @@ class UserProvider extends Component {
                     ...this.state,
                     signup:this.signup,
                     login: this.login,
-                    logout:this.logout
+                    logout:this.logout,
+                    profile:this.profile
                 }}>
                 {this.props.children}
                 </UserContext.Provider>

@@ -58,9 +58,11 @@ class FileUploader extends Component {
                 <progress value= {this.state.progress} max = "100"/>
                 <br/>
                 <input type= "file" onChange= {this.handleChange}/>  
-                <button onClick = {this.handleUpload}>Upload</button> 
+                <button className = "upload-button" onClick = {this.handleUpload}>Upload</button> 
                 <br/>
-                <img src = {this.state.url || "http://via.placeholder.com/400x300"} alt= "Upload images" height= "300" width= "400" />
+                <img src = {this.state.url || "http://via.placeholder.com/400x300"} alt= "Upload images" height= "400" width= "300" />
+                <br/>
+                {this.state.url && <a href={this.state.url}>Download File</a>}
             </div>
         )
     }

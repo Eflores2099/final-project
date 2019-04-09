@@ -6,7 +6,7 @@ const NavBar = () => {
         <div className = "nav">
             <Link to = "/">Home</Link>
             <Link to = "/trustee">Trustees</Link>
-            <Link to = '/fileUpload'>Upload Documents</Link>
+            <Link to = '/fileUploader'>Upload Documents</Link>
 
         </div>
     )

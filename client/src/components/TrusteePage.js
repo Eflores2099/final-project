@@ -35,6 +35,7 @@ class TrusteePage extends Component {
 
         e.preventDefault()
         this.props.trustee(this.state.trustee)
+        console.log('saved')
     }
     
     render() {
@@ -57,7 +58,7 @@ class TrusteePage extends Component {
                     {mappedTrustees}
                     <br/>
 
-                    <button onClick ={this.handleTrusteeSubmit}>Save</button>
+                    <button onSubmit ={this.handleTrusteeSubmit}>Save</button>
                 </form>
 
             </div>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {withUser} from '../context/UserProvider'
 
 
 class HomeProfile extends Component {
@@ -47,6 +48,7 @@ class HomeProfile extends Component {
 
         e.preventDefault()
         this.props.profile(this.state.profile)
+        console.log('saved')
     
 }
 
@@ -67,15 +69,15 @@ class HomeProfile extends Component {
             <div className = "profile">
                 <br/>
                 <br/>
-                <h4>about me</h4>
+                <h3>about me</h3>
                 <form className= "profile-form" onSubmit = {this.handleProfileSubmit}>
                      {mappedInputs}
                         <br/>
-                <button onCLick={this.handleProfileSubmit}>Save</button>
+                <button onSubmit={this.handleProfileSubmit}>Save</button>
                 </form>
             </div>
         )   
     }
 }
 
-export default HomeProfile
+export default withUser(HomeProfile)

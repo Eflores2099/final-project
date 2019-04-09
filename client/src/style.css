@@ -13,10 +13,9 @@
 body{
     background-color: cornflowerblue;
 }
-.profile-form{
+.profile-form {
     display: grid|inline-grid;
-    grid-column: span 3;
-    width: 190px;
+    width: 170px;
     float: left;
     font-size: 1.5rem;
     border: solid;
@@ -29,6 +28,10 @@ body{
     grid-column: 3;
     font-size:1.5rem;
     width: 200px;
+}
+
+.upload-button{
+    
 }
 
 @media screen and (max-width: 600px){

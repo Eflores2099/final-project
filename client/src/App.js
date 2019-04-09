@@ -6,7 +6,7 @@ import ProtectedRoute from './shared/ProtectedRoute.js'
 import Home from './components/Home.js'
 import NavBar from './components/NavBar.js'
 import TrusteePage from './components/TrusteePage.js'
-// import FileUploader from './components/FileUploader.jsx'
+import FileUploader from './components/FileUploader'
 import './style.css'
 
 

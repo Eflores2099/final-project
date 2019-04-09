@@ -2,7 +2,8 @@ const express = require("express")
 const userRouter = express.Router()
 const User = require("../models/user")
 
-userRouter.put("/profile", (req, res, next) => {
+userRouter.post("/profile", (req, res, next) => {
+    console.log('anything')
     User.findOneAndUpdate(
        {_id: req.user._id},
        req.body,
