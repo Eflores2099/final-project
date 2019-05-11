@@ -5,14 +5,16 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const expressJwt = require('express-jwt')
 const PORT = process.env.PORT || 6500
+const path = require('path')
 
 // my middleswares
 app.use(express.json())
 app.use(morgan('dev'))
 app.use("/api", expressJwt({secret: process.env.SECRET}))
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // My database Connect to mongoose
-mongoose.connect('mongodb://localhost:27017/auth', {useNewUrlParser: true}, () => {
+mongoose.connect(process.env.mongolab-concentric-14560||'mongodb://localhost:27017/auth', {useNewUrlParser: true}, () => {
     console.log("[o] Connected to the Database")
 })
 
@@ -34,7 +36,9 @@ app.use((err, req, res, next) => {
 })
 
 // server set up
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(PORT, () => {
     console.log(`[+] Server is running on Port ${PORT}`)
 })
