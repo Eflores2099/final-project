@@ -14,7 +14,7 @@ app.use("/api", expressJwt({secret: process.env.SECRET}))
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 // My database Connect to mongoose
-mongoose.connect(process.env.mongolab-concentric-14560||'mongodb://localhost:27017/auth', {useNewUrlParser: true}, () => {
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://heroku_3m5tnq3t:og16ivfsmgn7osjfs35um4igb1@ds155076.mlab.com:55076/heroku_3m5tnq3t', {useNewUrlParser: true}, () => {
     console.log("[o] Connected to the Database")
 })
 
@@ -42,3 +42,4 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
     console.log(`[+] Server is running on Port ${PORT}`)
 })
+
