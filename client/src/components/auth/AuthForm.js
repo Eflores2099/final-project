@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/AuthForm.css'
 
 const AuthForm = props => {
     const {handleSubmit, handleChange, username, password, btnText} = props

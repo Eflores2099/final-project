@@ -1,0 +1,31 @@
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 200px;
+    font-size: 1.5rem;
+}
+input,
+button {
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+input {
+    text-align: inherit;
+    padding:1em 1.5em;
+    font-size: .635em
+}
+
+button {
+    display: inline-block;
+    padding: 1em 1.5em;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: 0;
+    cursor:pointer;
+}

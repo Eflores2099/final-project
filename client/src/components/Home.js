@@ -1,6 +1,7 @@
 import React from 'react'
 // import { PromiseProvider } from 'mongoose';
 import HomeProfile from './HomeProfile.js'
+import './Styles/Home.css'
 // import {Switch, Route,} from 'react-router-dom'
 
 
@@ -9,7 +10,7 @@ import HomeProfile from './HomeProfile.js'
 
 const Home = ({logout, username}) => {
     return (
-        <div>
+        <div className = "login">
             
             <button onClick = {logout}>Logout</button>
             <br/>

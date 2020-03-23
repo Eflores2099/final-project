@@ -13,6 +13,7 @@
 body{
     background-color: cornflowerblue;
 }
+
 .profile-form {
     display: grid|inline-grid;
     width: 170px;
@@ -30,7 +31,7 @@ body{
     width: 200px;
 }
 
-.upload-button{
+.upload-button {
     
 }
 
